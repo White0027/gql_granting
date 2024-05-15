@@ -18,6 +18,7 @@ from ._GraphPermissions import (
 )
 
 AcProgramStudentGQLModel = Annotated["AcProgramStudentGQLModel", strawberry.lazy(".GraphTypeDefinitions")]
+AcClassificationGQLModel = Annotated["AcClassificationGQLModel", strawberry.lazy(".GraphTypeDefinitions")]
 
 @strawberry.federation.type(extend=True, keys=["id"])
 class UserGQLModel:
@@ -28,11 +29,17 @@ class UserGQLModel:
             description="""Program owing this subjects""",
             permission_classes=[OnlyForAuthentized(isList=True)]
             )
-    async def studies(self, info: strawberry.types.Info) -> Optional["AcProgramStudentGQLModel"]:
+    async def studies(self, info: strawberry.types.Info) -> List["AcProgramStudentGQLModel"]:
         from .GraphTypeDefinitions import AcProgramStudentGQLModel
         loader = AcProgramStudentGQLModel.getLoader(info)
         result = await loader.filter_by(student_id=self.id)
         return result    
+    
+    async def classifications(self, info: strawberry.types.Info) -> List["AcProgramStudentGQLModel"]:
+        from .GraphTypeDefinitions import AcClassificationGQLModel
+        loader = AcClassificationGQLModel.getLoader(info)
+        result = await loader.filter_by(student_id=self.id)
+        return result
 
 
 @strawberry.federation.type(extend=True, keys=["id"])
