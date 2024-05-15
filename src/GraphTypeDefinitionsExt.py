@@ -35,7 +35,11 @@ class UserGQLModel:
         result = await loader.filter_by(student_id=self.id)
         return result    
     
-    async def classifications(self, info: strawberry.types.Info) -> List["AcProgramStudentGQLModel"]:
+    @strawberry.field(
+            description="""user classifications""",
+            permission_classes=[OnlyForAuthentized(isList=True)]
+            )
+    async def classifications(self, info: strawberry.types.Info) -> List["AcClassificationGQLModel"]:
         from .GraphTypeDefinitions import AcClassificationGQLModel
         loader = AcClassificationGQLModel.getLoader(info)
         result = await loader.filter_by(student_id=self.id)
