@@ -242,7 +242,7 @@ class AcProgramMessageGQLModel:
             description="""student of the program""",
             permission_classes=[OnlyForAuthentized(isList=False)]
             )
-    async def program(self, info: strawberry.types.Info) -> Optional["UserGQLModel"]:
+    async def program(self, info: strawberry.types.Info) -> Optional["AcProgramGQLModel"]:
         return await AcProgramGQLModel.resolve_reference(info, id=self.program_id)
 
 # endregion
