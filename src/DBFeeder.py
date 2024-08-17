@@ -448,4 +448,5 @@ async def initDB(asyncSessionMaker):
         
     jsonData = get_demodata()
     await ImportModels(asyncSessionMaker, dbModels, jsonData)
+    print("data imported", flush=True)
     pass

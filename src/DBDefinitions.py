@@ -106,7 +106,8 @@ class ProgramStudentModel(BaseModel):
     __tablename__ = "acprograms_students"
     id = UUIDColumn()
     student_id = UUIDFKey(nullable=True)#Column(ForeignKey("users.id"), index=True, nullable=True)
-    state_id = Column(ForeignKey("acprograms_studentstates.id"), index=True)
+    # state_id = Column(ForeignKey("acprograms_studentstates.id"), index=True)
+    state_id = UUIDFKey(nullable=True)#Column(ForeignKey("users.id"), index=True, nullable=True)
     program_id = Column(ForeignKey("acprograms.id"), index=True)
     semester = Column(Integer)
 
