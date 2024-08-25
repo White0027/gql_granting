@@ -410,7 +410,7 @@ def get_demodata():
     return jsonData
 
 async def initDB(asyncSessionMaker):
-    Demo = os.environ.get("DEMODATA", None) == "True"
+    Demo = os.environ.get("DEMODATA", None) in ["True", "true"]
     if Demo:
         dbModels = [
             ProgramFormTypeModel,
