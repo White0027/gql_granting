@@ -520,8 +520,6 @@ class AcSemesterGQLModel:
         
     resolve_reference = resolve_reference
     id = resolve_id
-    name = resolve_name
-    name_en = resolve_name_en
 
     createdby = resolve_createdby
     changedby = resolve_changedby
