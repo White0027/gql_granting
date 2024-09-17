@@ -2130,9 +2130,11 @@ class Mutation:
 #
 ###########################################################################################################################
 
-from .GraphTypeDefinitionsExt import GroupGQLModel
+from .GraphTypeDefinitionsExt import GroupGQLModel as _GroupGQLModel, UserGQLModel as _UserGQLModel
 schema = strawberry.federation.Schema(query=Query, mutation=Mutation,
-    types=(GroupGQLModel, 
+    types=(
+    _GroupGQLModel, 
+    _UserGQLModel,
     AcClassificationLevelGQLModel, 
     AcClassificationGQLModel, 
     AcProgramTypeGQLModel, 
